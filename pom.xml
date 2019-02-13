@@ -25,6 +25,14 @@
 
     <dependencies>
 
+        <!-- API Servlet 4.0-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- API CDI Aplicação JSF 2.3, CDI 2.0-->
         <dependency>
             <groupId>javax.enterprise</groupId>

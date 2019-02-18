@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>pag Teste</title>
+</h:head>
+
+<h:body>
+    <style type="text/css">
+        .ui-datalist .ui-datalist-content {
+            border: 0 none
+        }
+
+        .ui-datalist ul {
+            padding: 0px 10px 0 20px;
+            margin: 5px 0;
+        }
+
+        .value {
+            font-weight: bold;
+        }
+
+        .ui-autocomplete-itemtip {
+            -moz-box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+    </style>
+
+    <h:form>
+        <p:growl id="msgs" showDetail="true"/>
+
+        <p:panel id="formularioPessoa" header="Cadastro de Pessoas" style="margin-bottom:40px">
+            <h:panelGrid columns="2" cellpadding="2">
+
+                <p:outputLabel value="Nome:" for="acNome"/>
+                <p:autoComplete id="acNome" value="#{pessoaController.pessoaForm.nome}"
+                                completeMethod="#{pessoaController.completeNome}"/>
+
+                <p:outputLabel value="CPF:" for="acCPF"/>
+                <p:autoComplete id="acCPF" value="#{pessoaController.pessoaForm.cpf}"
+                                completeMethod="#{pessoaController.completeCPF}"/>
+
+                <p:outputLabel value="Endereço:" for="acEndereco"/>
+                <p:autoComplete id="acEndereco" value="#{pessoaController.pessoaForm.endereco}"
+                                completeMethod="#{pessoaController.completeEndereco}"/>
+
+                <p:outputLabel value="Telefone:" for="acTelefone"/>
+                <p:autoComplete id="acTelefone" value="#{pessoaController.pessoaForm.telefone}"
+                                completeMethod="#{pessoaController.completeTelefone}"/>
+            </h:panelGrid>
+        </p:panel>
+
+        <p:growl id="growl" life="2000"/>
+        <p:commandButton value="Cadastrar" id="withIcon" action="#{pessoaController.cadastrar}" update="tabelaPessoa formularioPessoa"
+                         style="margin-right:20px;" icon="pi pi-save"/>
+
+        <p:commandButton value="Limpar" id="withIcon2" action="#{pessoaController.limpar}" update="@form"
+                         style="margin-right:20px;" icon="pi pi-save"/>
+
+
+        <p:commandButton value="Exluir" id="withIcon3" action="#{pessoaController.excluir}" update="@form"
+                         style="margin-right:20px;" icon="pi pi-save"/>
+
+        <br/>
+        <br/>
+        <br/>
+        <p:dataTable id="tabelaPessoa" var="pessoa" value="#{pessoaController.pessoas}" selectionMode="single" selection="#{pessoaController.pessoaSelecionada}" rowKey="#{pessoa}" >
+            <p:ajax event="rowSelect" listener="#{pessoaController.aoSelecionar}" update="@form" />
+            <p:ajax event="rowUnselect" listener="#{pessoaController.aoDesselecionar}" update="@form" />
+
+            <p:column headerText="Nome">
+                <h:outputText value="#{pessoa.nome}"/>
+            </p:column>
+
+            <p:column headerText="CPF">
+                <h:outputText value="#{pessoa.cpf}"/>
+            </p:column>
+
+            <p:column headerText="Endereço">
+                <h:outputText value="#{pessoa.endereco}"/>
+            </p:column>
+
+            <p:column headerText="Telefone">
+                <h:outputText value="#{pessoa.telefone}"/>
+            </p:column>
+        </p:dataTable>
+
+        <br/>
+
+    </h:form>
+
+</h:body>
+
+</html>

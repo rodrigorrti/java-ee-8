@@ -33,6 +33,7 @@ public class PessoaController implements Serializable {
 
     public void excluir(){
         this.pessoas.remove(pessoaForm);
+        limpar();
     }
 
     public void aoSelecionar(){

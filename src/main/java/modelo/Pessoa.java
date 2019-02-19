@@ -1,11 +1,29 @@
 package modelo;
 
-public class Pessoa {
+import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+@Entity
+public class Pessoa implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String nome;
     private String cpf;
     private String endereco;
     private String telefone;
+    private LocalDateTime dataCriacao;
 
+    public Pessoa() {
+    }
+
+    @PrePersist
+    @PreUpdate
+    private void prePersist(){
+        this.setDataCriacao(LocalDateTime.now());
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -14,19 +32,28 @@ public class Pessoa {
 
         Pessoa pessoa = (Pessoa) o;
 
-        if (nome != null ? !nome.equals(pessoa.nome) : pessoa.nome != null) return false;
-        if (cpf != null ? !cpf.equals(pessoa.cpf) : pessoa.cpf != null) return false;
-        if (endereco != null ? !endereco.equals(pessoa.endereco) : pessoa.endereco != null) return false;
-        return telefone != null ? telefone.equals(pessoa.telefone) : pessoa.telefone == null;
+        return id != null ? id.equals(pessoa.id) : pessoa.id == null;
     }
 
     @Override
     public int hashCode() {
-        int result = nome != null ? nome.hashCode() : 0;
-        result = 31 * result + (cpf != null ? cpf.hashCode() : 0);
-        result = 31 * result + (endereco != null ? endereco.hashCode() : 0);
-        result = 31 * result + (telefone != null ? telefone.hashCode() : 0);
-        return result;
+        return id != null ? id.hashCode() : 0;
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {

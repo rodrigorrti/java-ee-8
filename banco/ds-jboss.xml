@@ -1,0 +1,16 @@
+
+<!-- MySQL 8 : Wildfly / JBoss AS : "&AMP;" -->
+<datasource jta="true" jndi-name="java:jboss/datasources/javaee8-mysql" pool-name="javaee8-mysql" enabled="true" use-ccm="false">
+    <connection-url>jdbc:mysql://localhost:3306/cavera?useSSL=false&amp;useTimezone=true&amp;serverTimezone=UTC</connection-url>
+    <driver-class>com.mysql.cj.jdbc.Driver</driver-class>
+    <driver>mysql-connector-java-8.0.13.jar</driver>
+    <security>
+        <user-name>root</user-name>
+        <password>123456</password>
+    </security>
+    <validation>
+        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"/>
+        <background-validation>true</background-validation>
+        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
+    </validation>
+</datasource>

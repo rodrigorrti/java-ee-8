@@ -73,6 +73,23 @@
             <version>6.2</version>
         </dependency>
 
+
+        <!-- JPA 2.2 EE 8 (Hibernate) -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.3.6.Final</version> <!-- 5.3.6.Final (server) -->
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Transaction -->
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>javax.transaction-api</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

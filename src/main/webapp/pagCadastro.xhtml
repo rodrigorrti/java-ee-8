@@ -39,6 +39,9 @@
         <p:panel id="formularioPessoa" header="Cadastro de Pessoas" style="margin-bottom:40px">
             <h:panelGrid columns="2" cellpadding="2">
 
+                <p:outputLabel value="ID:" for="acID"/>
+                <p:autoComplete id="acID" value="#{pessoaController.pessoaForm.id}" enabled="false"/>
+
                 <p:outputLabel value="Nome:" for="acNome"/>
                 <p:autoComplete id="acNome" value="#{pessoaController.pessoaForm.nome}"/>
 
@@ -60,7 +63,6 @@
         <p:commandButton value="Limpar" id="withIcon2" action="#{pessoaController.limpar}" update="@form"
                          style="margin-right:20px;" icon="pi pi-save"/>
 
-
         <p:commandButton value="Exluir" id="withIcon3" action="#{pessoaController.excluir}" update="@form"
                          style="margin-right:20px;" icon="pi pi-save"/>
 
@@ -70,6 +72,10 @@
         <p:dataTable id="tabelaPessoa" var="pessoa" value="#{pessoaController.pessoas}" selectionMode="single" selection="#{pessoaController.pessoaSelecionada}" rowKey="#{pessoa}" >
             <p:ajax event="rowSelect" listener="#{pessoaController.aoSelecionar}" update="@form" />
             <p:ajax event="rowUnselect" listener="#{pessoaController.aoDesselecionar}" update="@form" />
+
+            <p:column headerText="ID">
+                <h:outputText value="#{pessoa.id}"/>
+            </p:column>
 
             <p:column headerText="Nome">
                 <h:outputText value="#{pessoa.nome}"/>

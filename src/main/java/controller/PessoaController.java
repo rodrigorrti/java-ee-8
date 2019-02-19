@@ -1,9 +1,11 @@
 package controller;
 
 import modelo.Pessoa;
+import repository.PessoaDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,14 +18,19 @@ public class PessoaController implements Serializable {
     private List<Pessoa> pessoas;// = new ArrayList<>();
     private Pessoa pessoaSelecionada;
 
+    @Inject
+    private PessoaDAO pessoaDAO;
+
     @PostConstruct
     private void innit (){
         pessoaForm = new Pessoa();
-        pessoas = new ArrayList<>();
+        pessoas = pessoaDAO.consultar();
     }
 
     public void cadastrar(){
         pessoas.add(pessoaForm);
+        pessoaDAO.salvar(pessoaForm);
+
         limpar();
     }
 
@@ -33,6 +40,7 @@ public class PessoaController implements Serializable {
 
     public void excluir(){
         this.pessoas.remove(pessoaForm);
+        pessoaDAO.remover(pessoaForm);
         limpar();
     }
 

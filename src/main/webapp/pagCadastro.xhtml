@@ -40,20 +40,16 @@
             <h:panelGrid columns="2" cellpadding="2">
 
                 <p:outputLabel value="Nome:" for="acNome"/>
-                <p:autoComplete id="acNome" value="#{pessoaController.pessoaForm.nome}"
-                                completeMethod="#{pessoaController.completeNome}"/>
+                <p:autoComplete id="acNome" value="#{pessoaController.pessoaForm.nome}"/>
 
                 <p:outputLabel value="CPF:" for="acCPF"/>
-                <p:autoComplete id="acCPF" value="#{pessoaController.pessoaForm.cpf}"
-                                completeMethod="#{pessoaController.completeCPF}"/>
+                <p:autoComplete id="acCPF" value="#{pessoaController.pessoaForm.cpf}"/>
 
                 <p:outputLabel value="Endereço:" for="acEndereco"/>
-                <p:autoComplete id="acEndereco" value="#{pessoaController.pessoaForm.endereco}"
-                                completeMethod="#{pessoaController.completeEndereco}"/>
+                <p:autoComplete id="acEndereco" value="#{pessoaController.pessoaForm.endereco}"/>
 
                 <p:outputLabel value="Telefone:" for="acTelefone"/>
-                <p:autoComplete id="acTelefone" value="#{pessoaController.pessoaForm.telefone}"
-                                completeMethod="#{pessoaController.completeTelefone}"/>
+                <p:autoComplete id="acTelefone" value="#{pessoaController.pessoaForm.telefone}"/>
             </h:panelGrid>
         </p:panel>
 

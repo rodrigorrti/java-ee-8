@@ -4,14 +4,13 @@ import modelo.Pessoa;
 import repository.PessoaDAO;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-@SessionScoped
+@ViewScoped
 @Named
 public class PessoaController implements Serializable {
     private Pessoa pessoaForm;
@@ -28,18 +27,20 @@ public class PessoaController implements Serializable {
     }
 
     public void cadastrar(){
-        pessoas.add(pessoaForm);
-        pessoaDAO.salvar(pessoaForm);
-
+        if (!pessoas.contains(pessoaForm)) {
+            pessoaDAO.salvar(pessoaForm);
+        }else{
+            pessoaDAO.editar(pessoaForm);
+        }
         limpar();
     }
 
     public void limpar(){
         this.pessoaForm = new Pessoa();
+        this.pessoas = pessoaDAO.consultar();
     }
 
     public void excluir(){
-        this.pessoas.remove(pessoaForm);
         pessoaDAO.remover(pessoaForm);
         limpar();
     }

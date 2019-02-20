@@ -34,13 +34,13 @@
     </style>
 
     <h:form>
-        <p:growl id="msgs" showDetail="true"/>
 
         <p:panel id="formularioPessoa" header="Cadastro de Pessoas" style="margin-bottom:40px">
+            <p:growl id="msgs" sticky="true"/>
             <h:panelGrid columns="2" cellpadding="2">
 
                 <p:outputLabel value="ID:" for="acID"/>
-                <p:autoComplete id="acID" value="#{pessoaController.pessoaForm.id}" enabled="false"/>
+                <p:autoComplete id="acID" value="#{pessoaController.pessoaForm.id}" readonly="true"/>
 
                 <p:outputLabel value="Nome:" for="acNome"/>
                 <p:autoComplete id="acNome" value="#{pessoaController.pessoaForm.nome}"/>
@@ -53,18 +53,18 @@
 
                 <p:outputLabel value="Telefone:" for="acTelefone"/>
                 <p:autoComplete id="acTelefone" value="#{pessoaController.pessoaForm.telefone}"/>
+
             </h:panelGrid>
         </p:panel>
 
-        <p:growl id="growl" life="2000"/>
         <p:commandButton value="Cadastrar" id="withIcon" action="#{pessoaController.cadastrar}" update="tabelaPessoa formularioPessoa"
                          style="margin-right:20px;" icon="pi pi-save"/>
 
         <p:commandButton value="Limpar" id="withIcon2" action="#{pessoaController.limpar}" update="@form"
-                         style="margin-right:20px;" icon="pi pi-save"/>
+                         style="margin-right:20px;" icon="pi pi-save" immediate="true" process="@this"/>
 
         <p:commandButton value="Exluir" id="withIcon3" action="#{pessoaController.excluir}" update="@form"
-                         style="margin-right:20px;" icon="pi pi-save"/>
+                         style="margin-right:20px;" icon="pi pi-save" immediate="true" process="@this"/>
 
         <br/>
         <br/>
@@ -91,6 +91,12 @@
 
             <p:column headerText="Telefone">
                 <h:outputText value="#{pessoa.telefone}"/>
+            </p:column>
+
+            <p:column headerText="Data de Criação">
+                <h:outputText value="#{pessoa.dataCriacao}">
+                     <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" type="localDateTime"/>
+                </h:outputText>
             </p:column>
         </p:dataTable>
 

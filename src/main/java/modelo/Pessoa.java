@@ -1,6 +1,7 @@
 package modelo;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -10,6 +11,7 @@ public class Pessoa implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "Nome deve ser preenchido!")
     private String nome;
     private String cpf;
     private String endereco;
